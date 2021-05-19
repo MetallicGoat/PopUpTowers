@@ -1,0 +1,4 @@
+name: PopUpTowers
+version: 1.0
+main: me.metallicgoat.PopUpTowers.Main
+depend: [MBedwars]
