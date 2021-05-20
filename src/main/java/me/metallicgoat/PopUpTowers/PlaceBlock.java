@@ -7,9 +7,12 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 public class PlaceBlock {
-    public PlaceBlock(Block b, int x, int y, int z, DyeColor color, Player p, boolean ladder, int ladderdata) {
+    public PlaceBlock(Block b, int x, int y, int z, DyeColor color, Player p, boolean ladder, int ladderdata, boolean up) {
         Arena arena = BedwarsAPI.getGameAPI().getArenaByPlayer(p);
-        //World world = arena.getGameWorld();
+
+        if(up){
+            y = y + 1;
+        }
 
         //Is block there?
         if (b.getRelative(x, y, z).getType().equals(Material.AIR)) {

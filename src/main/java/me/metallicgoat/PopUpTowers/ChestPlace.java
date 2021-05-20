@@ -9,6 +9,7 @@ import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -48,9 +49,15 @@ public class ChestPlace implements Listener {
     }*/
     public void buildTower(PlayerUseSpecialItemEvent e, SpecialItemUseSession session){
         final Player player = e.getPlayer();
+        boolean up = false;
         if(e.getClickedBlock() == null){
             session.stop();
             return;
+        }
+        if(e.getClickedBlockFace() == BlockFace.UP){
+            up = true;
+        }else if(e.getClickedBlockFace() == BlockFace.DOWN){
+            //don't take item
         }
         final Location loc = e.getClickedBlock().getLocation();
         final Block chest = e.getClickedBlock();
@@ -60,15 +67,15 @@ public class ChestPlace implements Listener {
             rotation += 360.0D;
         }
         if (45.0D <= rotation && rotation < 135.0D) {
-            new TowerSouth(loc, chest, col, player, session);
+            new TowerSouth(loc, chest, col, player, up, session);
         } else if (225.0D <= rotation && rotation < 315.0D) {
-            new TowerNorth(loc, chest, col, player, session);
+            new TowerNorth(loc, chest, col, player,up, session);
         } else if (135.0D <= rotation && rotation < 225.0D) {
-            new TowerWest(loc, chest, col, player, session);
+            new TowerWest(loc, chest, col, player, up,  session);
         } else if (0.0D <= rotation && rotation < 45.0D) {
-            new TowerEast(loc, chest, col, player, session);
+            new TowerEast(loc, chest, col, player, up, session);
         } else if (315.0D <= rotation && rotation < 360.0D) {
-            new TowerEast(loc, chest, col, player, session);
+            new TowerEast(loc, chest, col, player, up, session);
         }
     }
 }
