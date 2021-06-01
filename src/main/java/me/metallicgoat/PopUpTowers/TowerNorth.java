@@ -25,6 +25,7 @@ public class TowerNorth {
         new PlaceBlock(chest, 2, 0, 0, color, p, false, 0, up);
         new PlaceBlock(chest, 2, 0, -1, color, p, false, 0, up);
         new PlaceBlock(chest, 1, 0, -2, color, p, false, 0, up);
+        new PlaceBlock(chest, 0, 0, 0, color, p, true, 2, up);
         if (Bukkit.getServer().getClass().getPackage().getName().contains("v1_8")) {
             loc.getWorld().playSound(loc, Sound.valueOf("CHICKEN_EGG_POP"), 1.0F, 1.0F);
         } else {
@@ -41,6 +42,7 @@ public class TowerNorth {
             new PlaceBlock(chest, 2, 1, 0, color, p, false, 0, up);
             new PlaceBlock(chest, 2, 1, -1, color, p, false, 0, up);
             new PlaceBlock(chest, 1, 1, -2, color, p, false, 0, up);
+            new PlaceBlock(chest, 0, 1, 0, color, p, true, 2, up);
             if (Bukkit.getServer().getClass().getPackage().getName().contains("v1_8")) {
                 loc.getWorld().playSound(loc, Sound.valueOf("CHICKEN_EGG_POP"), 1.0F, 1.0F);
             } else {
@@ -57,6 +59,7 @@ public class TowerNorth {
                 new PlaceBlock(chest, 2, 2, 0, color, p, false, 0, up);
                 new PlaceBlock(chest, 2, 2, -1, color, p, false, 0, up);
                 new PlaceBlock(chest, 1, 2, -2, color, p, false, 0, up);
+                new PlaceBlock(chest, 0, 2, 0, color, p, true, 2, up);
                 if (Bukkit.getServer().getClass().getPackage().getName().contains("v1_8")) {
                     loc.getWorld().playSound(loc, Sound.valueOf("CHICKEN_EGG_POP"), 1.0F, 1.0F);
                 } else {
@@ -74,6 +77,7 @@ public class TowerNorth {
                     new PlaceBlock(chest, 2, 3, 0, color, p, false, 0, up);
                     new PlaceBlock(chest, 2, 3, -1, color, p, false, 0, up);
                     new PlaceBlock(chest, 1, 3, -2, color, p, false, 0, up);
+                    new PlaceBlock(chest, 0, 3, 0, color, p, true, 2, up);
                     if (Bukkit.getServer().getClass().getPackage().getName().contains("v1_8")) {
                         loc.getWorld().playSound(loc, Sound.valueOf("CHICKEN_EGG_POP"), 1.0F, 1.0F);
                     } else {
@@ -100,6 +104,7 @@ public class TowerNorth {
                         new PlaceBlock(chest, 2, 4, 0, color, p, false, 0, up);
                         new PlaceBlock(chest, 2, 4, -1, color, p, false, 0, up);
                         new PlaceBlock(chest, 2, 4, -2, color, p, false, 0, up);
+                        new PlaceBlock(chest, 0, 4, 0, color, p, true, 2, up);
                         if (Bukkit.getServer().getClass().getPackage().getName().contains("v1_8")) {
                             loc.getWorld().playSound(loc, Sound.valueOf("CHICKEN_EGG_POP"), 1.0F, 1.0F);
                         } else {
@@ -150,21 +155,8 @@ public class TowerNorth {
                             } else {
                                 loc.getWorld().playSound(loc, Sound.valueOf("ENTITY_CHICKEN_EGG"), 1.0F, 1.0F);
                             }
+                            session.stop();
 
-                            Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                                new PlaceBlock(chest, 0, 0, 0, color, p, true, 2, up);
-                                new PlaceBlock(chest, 0, 1, 0, color, p, true, 2, up);
-                                new PlaceBlock(chest, 0, 2, 0, color, p, true, 2, up);
-                                new PlaceBlock(chest, 0, 3, 0, color, p, true, 2, up);
-                                new PlaceBlock(chest, 0, 4, 0, color, p, true, 2, up);
-                                if (Bukkit.getServer().getClass().getPackage().getName().contains("v1_8")) {
-                                    loc.getWorld().playSound(loc, Sound.valueOf("CHICKEN_EGG_POP"), 1.0F, 1.0F);
-                                } else {
-                                    loc.getWorld().playSound(loc, Sound.valueOf("ENTITY_CHICKEN_EGG"), 1.0F, 1.0F);
-                                }
-                                session.stop();
-
-                            }, 3L);
                         }, 3L);
                     }, 3L);
                 }, 3L);

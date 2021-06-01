@@ -60,8 +60,5 @@ public class RegisterTower {
         }else{
             System.out.println("WARNING: Another addon is probably using the 'tower' special item id");
         }
-
-
     }
-
 }
