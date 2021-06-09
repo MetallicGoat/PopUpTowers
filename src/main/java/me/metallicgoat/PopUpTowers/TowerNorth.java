@@ -4,20 +4,10 @@ import de.marcely.bedwars.api.game.specialitem.SpecialItemUseSession;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 public class TowerNorth {
     public TowerNorth(Location loc, Block chest, DyeColor color, Player p, SpecialItemUseSession session) {
         Main plugin = Main.getInstance();
-        /*
-        ItemStack itemInHand = p.getInventory().getItemInHand();
-        if (itemInHand.getAmount() > 1) {
-            itemInHand.setAmount(itemInHand.getAmount() - 1);
-        } else {
-            p.getInventory().setItemInHand((ItemStack)null);
-        }
-
-         */
 
         new BlockManager(chest, -1, 0, -2, color, p, false, "SOUTH");
         new BlockManager(chest, -2, 0, -1, color, p, false, "SOUTH");

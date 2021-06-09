@@ -14,14 +14,13 @@ public class ChestPlace implements Listener {
 
     public void buildTower(PlayerUseSpecialItemEvent e, SpecialItemUseSession session){
         final Player player = e.getPlayer();
-        boolean up;
         if(e.getClickedBlock() == null){
             e.setTakingItem(false);
             session.stop();
             return;
         }
         if(e.getClickedBlockFace() != BlockFace.DOWN){
-            e.setTakingItem(true);
+            session.takeItem();
         }else{
             e.setTakingItem(false);
             session.stop();

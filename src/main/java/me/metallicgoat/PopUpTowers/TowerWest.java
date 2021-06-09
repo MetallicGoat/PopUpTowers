@@ -8,15 +8,6 @@ import org.bukkit.entity.Player;
 public class TowerWest {
     public TowerWest(Location loc, Block chest, DyeColor color, Player p, SpecialItemUseSession session) {
         Main plugin = Main.getInstance();
-        /*
-        ItemStack itemInHand = p.getInventory().getItemInHand();
-        if (itemInHand.getAmount() > 1) {
-            itemInHand.setAmount(itemInHand.getAmount() - 1);
-        } else {
-            p.getInventory().setItemInHand((ItemStack)null);
-        }
-
-         */
 
         new BlockManager(chest, -2, 0, 1, color, p, false, "EAST");
         new BlockManager(chest, -1, 0, 2, color, p, false, "EAST");
