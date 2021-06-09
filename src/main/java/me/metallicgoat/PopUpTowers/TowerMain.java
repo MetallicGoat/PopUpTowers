@@ -19,7 +19,7 @@ public class TowerMain {
             p.getInventory().setItemInHand((ItemStack)null);
         }
 
-        new PlaceBlock(chest, -1, 1, 2, color, p, false, 0, up);
+        /*new PlaceBlock(chest, -1, 1, 2, color, p, false, 0, up);
         new PlaceBlock(chest, 0, 1, 2, color, p, false, 0, up);
         new PlaceBlock(chest, 1, 1, 2, color, p, false, 0, up);
         new PlaceBlock(chest, 2, 1, 1, color, p, false, 0, up);
@@ -191,13 +191,13 @@ public class TowerMain {
                                 new PlaceBlock(chest, -3, 7, 2, color, p, false, 0, up);
 
 
-                                /*
+
                                 new PlaceBlock(chest, 0, 0, 0, color, p, true, 4);
                                 new PlaceBlock(chest, 0, 1, 0, color, p, true, 4);
                                 new PlaceBlock(chest, 0, 2, 0, color, p, true, 4);
                                 new PlaceBlock(chest, 0, 3, 0, color, p, true, 4);
                                 new PlaceBlock(chest, 0, 4, 0, color, p, true, 4);
-                                 */
+
 
                                 if (Bukkit.getServer().getClass().getPackage().getName().contains("v1_8")) {
                                     loc.getWorld().playSound(loc, Sound.valueOf("CHICKEN_EGG_POP"), 1.0F, 1.0F);
@@ -212,5 +212,7 @@ public class TowerMain {
                 }, 3L);
             }, 3L);
         }, 3L);
+
+         */
     }
 }

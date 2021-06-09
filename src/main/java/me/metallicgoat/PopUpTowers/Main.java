@@ -1,5 +1,8 @@
 package me.metallicgoat.PopUpTowers;
 
+import me.metallicgoat.PopUpTowers.VersionSupport.BlockPlacer;
+import me.metallicgoat.PopUpTowers.VersionSupport.Legacy;
+import me.metallicgoat.PopUpTowers.VersionSupport.Newer;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.ConsoleCommandSender;
@@ -12,8 +15,17 @@ public class Main extends JavaPlugin {
     private static Main instance;
     private final ConsoleCommandSender console = Bukkit.getConsoleSender();
     private final Server server = getServer();
+    public String sversion;
+    public BlockPlacer blockPlacer;
 
     public void onEnable() {
+        if(!setupManager()){
+            log("Failed to start. Unsupported server version.");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
+
+
         registerEvents();
         instance = this;
         PluginDescriptionFile pdf = this.getDescription();
@@ -50,5 +62,36 @@ public class Main extends JavaPlugin {
     private void log(String ...args) {
         for(String s : args)
             getLogger().info(s);
+    }
+
+    private boolean setupManager(){
+        sversion = "N/A";
+        try {
+            sversion = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+        }catch (ArrayIndexOutOfBoundsException e){
+            return false;
+        }
+        System.out.println(sversion);
+
+        if(sversion.equals("v1_8_R3")){
+            blockPlacer = new Legacy();
+        }else if (sversion.equals("v1_9_R2")) {
+            blockPlacer = new Legacy();
+        }else if (sversion.equals("v1_10_R1")) {
+            blockPlacer = new Legacy();
+        }else if (sversion.equals("v1_11_R1")) {
+            blockPlacer = new Legacy();
+        }else if (sversion.equals("v1_12_R1")) {
+            blockPlacer = new Legacy();
+        }else if (sversion.equals("v1_13_R2")) {
+            blockPlacer = new Newer();
+        }else if (sversion.equals("v1_14_R1")) {
+            blockPlacer = new Newer();
+        }else if (sversion.equals("v1_15_R1")) {
+            blockPlacer = new Newer();
+        }else if (sversion.equals("v1_16_R3")) {
+            blockPlacer = new Newer();
+        }
+        return blockPlacer != null;
     }
 }

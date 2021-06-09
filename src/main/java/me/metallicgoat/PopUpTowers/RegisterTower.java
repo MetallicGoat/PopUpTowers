@@ -35,7 +35,7 @@ public class RegisterTower {
         SpecialItem specialItem = GameAPI.get().registerSpecialItem("tower", plugin, "%towerItem%", new ItemStack(Material.CHEST));
         //GameAPI.get().registerSpecialItem("tower", plugin, "%towerItem%", new ItemStack(Material.CHEST)).registerListener(listener);
 
-        // id is already taken
+
         if(specialItem != null){
             specialItem.registerListener(listener);
 
@@ -58,6 +58,7 @@ public class RegisterTower {
                 }
             });
         }else{
+            // id is already taken
             System.out.println("WARNING: Another addon is probably using the 'tower' special item id");
         }
     }

@@ -21,7 +21,7 @@ public class ChestPlace implements Listener {
             return;
         }
         if(e.getClickedBlockFace() != BlockFace.DOWN){
-            up = true;
+            e.setTakingItem(true);
         }else{
             e.setTakingItem(false);
             session.stop();
@@ -35,15 +35,15 @@ public class ChestPlace implements Listener {
             rotation += 360.0D;
         }
         if (45.0D <= rotation && rotation < 135.0D) {
-            new TowerSouth(loc, chest, col, player, up, session);
+            new TowerSouth(loc, chest, col, player, session);
         } else if (225.0D <= rotation && rotation < 315.0D) {
-            new TowerNorth(loc, chest, col, player,up, session);
+            new TowerNorth(loc, chest, col, player, session);
         } else if (135.0D <= rotation && rotation < 225.0D) {
-            new TowerWest(loc, chest, col, player, up,  session);
+            new TowerWest(loc, chest, col, player,  session);
         } else if (0.0D <= rotation && rotation < 45.0D) {
-            new TowerEast(loc, chest, col, player, up, session);
+            new TowerEast(loc, chest, col, player, session);
         } else if (315.0D <= rotation && rotation < 360.0D) {
-            new TowerEast(loc, chest, col, player, up, session);
+            new TowerEast(loc, chest, col, player, session);
         }
     }
 }
