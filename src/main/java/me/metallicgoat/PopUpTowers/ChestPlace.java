@@ -31,27 +31,32 @@ public class ChestPlace implements Listener {
             e.setTakingItem(false);
             session.stop();
             return;
-        }else{
-            session.takeItem();
         }
 
+        session.takeItem();
+
         final Location loc = e.getClickedBlock().getLocation();
-        final Block chest = e.getClickedBlock();
+        final Block clicked = e.getClickedBlock();
         final DyeColor col = BedwarsAPI.getGameAPI().getArenaByPlayer(player).getPlayerTeam(player).getDyeColor();
+
+        ChooseTower(player, loc, clicked, col, session);
+    }
+
+    private void ChooseTower(Player player, Location loc, Block clicked, DyeColor col, SpecialItemUseSession session){
         double rotation = (double) ((player.getLocation().getYaw() - 90.0F) % 360.0F);
         if (rotation < 0.0D) {
             rotation += 360.0D;
         }
         if (45.0D <= rotation && rotation < 135.0D) {
-            new TowerSouth(loc, chest, col, player, session);
+            new TowerSouth(loc, clicked, col, player, session);
         } else if (225.0D <= rotation && rotation < 315.0D) {
-            new TowerNorth(loc, chest, col, player, session);
+            new TowerNorth(loc, clicked, col, player, session);
         } else if (135.0D <= rotation && rotation < 225.0D) {
-            new TowerWest(loc, chest, col, player,  session);
+            new TowerWest(loc, clicked, col, player,  session);
         } else if (0.0D <= rotation && rotation < 45.0D) {
-            new TowerEast(loc, chest, col, player, session);
+            new TowerEast(loc, clicked, col, player, session);
         } else if (315.0D <= rotation && rotation < 360.0D) {
-            new TowerEast(loc, chest, col, player, session);
+            new TowerEast(loc, clicked, col, player, session);
         }
     }
 

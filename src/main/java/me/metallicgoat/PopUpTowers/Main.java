@@ -1,8 +1,8 @@
 package me.metallicgoat.PopUpTowers;
 
-import me.metallicgoat.PopUpTowers.VersionSupport.BlockPlacer;
-import me.metallicgoat.PopUpTowers.VersionSupport.Legacy;
-import me.metallicgoat.PopUpTowers.VersionSupport.Newer;
+import me.metallicgoat.PopUpTowers.versionsupport.BlockPlacer;
+import me.metallicgoat.PopUpTowers.versionsupport.Legacy;
+import me.metallicgoat.PopUpTowers.versionsupport.Newer;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.ConsoleCommandSender;

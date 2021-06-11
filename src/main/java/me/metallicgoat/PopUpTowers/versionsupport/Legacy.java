@@ -1,4 +1,4 @@
-package me.metallicgoat.PopUpTowers.VersionSupport;
+package me.metallicgoat.PopUpTowers.versionsupport;
 
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
