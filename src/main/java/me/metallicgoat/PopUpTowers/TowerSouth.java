@@ -8,6 +8,9 @@ import org.bukkit.entity.Player;
 public class TowerSouth {
     public TowerSouth(Location loc, Block clicked, DyeColor color, Player p, SpecialItemUseSession session) {
         Main plugin = Main.getInstance();
+        
+        //TODO: Make Configurable 
+        final long a = 3L;
 
         new BlockManager(clicked, 1, 0, 2, color, p, false, "NORTH");
         new BlockManager(clicked, 2, 0, 1, color, p, false, "NORTH");
@@ -150,10 +153,10 @@ public class TowerSouth {
                             }
                             session.stop();
 
-                        }, 3L);
-                    }, 3L);
-                }, 3L);
-            }, 3L);
-        }, 3L);
+                        }, a);
+                    }, a);
+                }, a);
+            }, a);
+        }, a);
     }
 }
