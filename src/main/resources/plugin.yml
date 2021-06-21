@@ -1,6 +1,6 @@
 name: PopUpTowers
 author: MetallicGoat
-version: 1.0
+version: 1.0-Beta6
 main: me.metallicgoat.PopUpTowers.Main
 depend: [MBedwars]
 api-version: 1.13

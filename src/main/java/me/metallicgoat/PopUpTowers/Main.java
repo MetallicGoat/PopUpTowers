@@ -1,8 +1,11 @@
 package me.metallicgoat.PopUpTowers;
 
-import me.metallicgoat.PopUpTowers.versionsupport.BlockPlacer;
-import me.metallicgoat.PopUpTowers.versionsupport.Legacy;
-import me.metallicgoat.PopUpTowers.versionsupport.Newer;
+
+import me.metallicgoat.PopUpTowers.config.ConfigManager;
+import me.metallicgoat.PopUpTowers.config.ConfigUpdater;
+import me.metallicgoat.PopUpTowers.VersionSupport.BlockPlacer;
+import me.metallicgoat.PopUpTowers.VersionSupport.Legacy;
+import me.metallicgoat.PopUpTowers.VersionSupport.Newer;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.ConsoleCommandSender;
@@ -10,9 +13,14 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+
 public class Main extends JavaPlugin {
 
     private static Main instance;
+    private static ConfigManager configManager;
     private final ConsoleCommandSender console = Bukkit.getConsoleSender();
     private final Server server = getServer();
     public String sversion;
@@ -25,9 +33,14 @@ public class Main extends JavaPlugin {
             return;
         }
 
+        int pluginId = 11772;
+        Metrics metrics = new Metrics(this, pluginId);
 
         registerEvents();
+        loadConfig();
         instance = this;
+        configManager = new ConfigManager();
+
         PluginDescriptionFile pdf = this.getDescription();
 
         log(
@@ -37,9 +50,6 @@ public class Main extends JavaPlugin {
                 "Version: " + pdf.getVersion(),
                 "------------------------------"
         );
-
-        getConfig().options().copyDefaults();
-        saveDefaultConfig();
 
         RegisterTower rt = new RegisterTower();
         rt.registerItem();
@@ -55,6 +65,10 @@ public class Main extends JavaPlugin {
         return instance;
     }
 
+    public static ConfigManager getConfigManager() {
+        return configManager;
+    }
+
     public ConsoleCommandSender getConsole() {
         return console;
     }
@@ -64,6 +78,19 @@ public class Main extends JavaPlugin {
             getLogger().info(s);
     }
 
+    private void loadConfig(){
+        saveDefaultConfig();
+        File configFile = new File(getDataFolder(), "config.yml");
+
+        try {
+            ConfigUpdater.update(this, "config.yml", configFile, Arrays.asList("Nothing", "here"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        reloadConfig();
+    }
+
     private boolean setupManager(){
         sversion = "N/A";
         try {
@@ -71,7 +98,6 @@ public class Main extends JavaPlugin {
         }catch (ArrayIndexOutOfBoundsException e){
             return false;
         }
-        System.out.println(sversion);
 
         if(sversion.equals("v1_8_R3")){
             blockPlacer = new Legacy();

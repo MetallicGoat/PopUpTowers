@@ -1,6 +1,8 @@
-package me.metallicgoat.PopUpTowers;
+package me.metallicgoat.PopUpTowers.towers;
 
 import de.marcely.bedwars.api.game.specialitem.SpecialItemUseSession;
+import me.metallicgoat.PopUpTowers.BlockManager;
+import me.metallicgoat.PopUpTowers.Main;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -8,9 +10,8 @@ import org.bukkit.entity.Player;
 public class TowerSouth {
     public TowerSouth(Location loc, Block clicked, DyeColor color, Player p, SpecialItemUseSession session) {
         Main plugin = Main.getInstance();
-        
-        //TODO: Make Configurable 
-        final long a = 3L;
+
+        final long a = getSpeed();
 
         new BlockManager(clicked, 1, 0, 2, color, p, false, "NORTH");
         new BlockManager(clicked, 2, 0, 1, color, p, false, "NORTH");
@@ -158,5 +159,8 @@ public class TowerSouth {
                 }, a);
             }, a);
         }, a);
+    }
+    private long getSpeed(){
+        return Main.getConfigManager().getAnimationSpeed();
     }
 }

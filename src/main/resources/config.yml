@@ -1,0 +1,8 @@
+#The amount of ticks that pass before a layer of a popuptower is built
+Animation-Speed: 3
+#Radius around player spawn points where popuptowers cant be used
+Anti-Place-TeamSpawn-Radius: 6
+#Radius around itemspawner's where popuptowers cant be used
+Anti-Place-ItemSpawner-Radius: 3
+#Message that is displayed if you cant place popuptower
+Anti-Place-Message: '&cYou can not use this item here!'

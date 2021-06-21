@@ -2,7 +2,7 @@ package me.metallicgoat.PopUpTowers;
 
 import de.marcely.bedwars.api.BedwarsAPI;
 import de.marcely.bedwars.api.arena.Arena;
-import me.metallicgoat.PopUpTowers.versionsupport.BlockPlacer;
+import me.metallicgoat.PopUpTowers.VersionSupport.BlockPlacer;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;

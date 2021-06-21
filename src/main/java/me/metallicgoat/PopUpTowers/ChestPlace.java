@@ -6,6 +6,11 @@ import de.marcely.bedwars.api.arena.Team;
 import de.marcely.bedwars.api.event.player.PlayerUseSpecialItemEvent;
 import de.marcely.bedwars.api.game.spawner.Spawner;
 import de.marcely.bedwars.api.game.specialitem.SpecialItemUseSession;
+import me.metallicgoat.PopUpTowers.towers.TowerEast;
+import me.metallicgoat.PopUpTowers.towers.TowerNorth;
+import me.metallicgoat.PopUpTowers.towers.TowerSouth;
+import me.metallicgoat.PopUpTowers.towers.TowerWest;
+import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -27,7 +32,7 @@ public class ChestPlace implements Listener {
             session.stop();
             return;
         }else if(!CheckArea(BedwarsAPI.getGameAPI().getArenaByPlayer(player), e.getClickedBlock().getRelative(0, 1, 0))){
-            player.sendMessage("You can not use this item here!");
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', getMessage()));
             e.setTakingItem(false);
             session.stop();
             return;
@@ -60,25 +65,37 @@ public class ChestPlace implements Listener {
         }
     }
 
-    //TODO: Make configurable radius
     //Checks if the popuptower is placed inside/near team spawn area, and item spawners
     private boolean CheckArea(Arena arena, Block b){
+
+        final int sRadius = getSRadius();
+        final int tRadius = getTRadius();
+
         for(Spawner s : arena.getSpawners()){
             Location sLoc = s.getLocation().toLocation(arena.getGameWorld());
             Location bLoc = b.getLocation();
-            if ((sLoc.getX() <= bLoc.getX() + 2 && sLoc.getY() <= bLoc.getY() + 2 && sLoc.getZ() <= bLoc.getZ() + 2)
-                    && (sLoc.getX() >= bLoc.getX() - 2 && sLoc.getY() >= bLoc.getY() - 2 && sLoc.getZ() >= bLoc.getZ() - 2)) {
+            if ((sLoc.getX() <= bLoc.getX() + sRadius && sLoc.getY() <= bLoc.getY() + sRadius && sLoc.getZ() <= bLoc.getZ() + sRadius)
+                    && (sLoc.getX() >= bLoc.getX() - sRadius && sLoc.getY() >= bLoc.getY() - sRadius && sLoc.getZ() >= bLoc.getZ() - sRadius)) {
                 return false;
             }
         }
         for(Team team : arena.getEnabledTeams()){
             Location tLoc = arena.getTeamSpawn(team).toLocation(arena.getGameWorld());
             Location bLoc = b.getLocation();
-            if ((tLoc.getX() <= bLoc.getX() + 4 && tLoc.getY() <= bLoc.getY() + 4 && tLoc.getZ() <= bLoc.getZ() + 4)
-                    && (tLoc.getX() >= bLoc.getX() - 4 && tLoc.getY() >= bLoc.getY() - 4 && tLoc.getZ() >= bLoc.getZ() - 4)) {
+            if ((tLoc.getX() <= bLoc.getX() + tRadius && tLoc.getY() <= bLoc.getY() + tRadius && tLoc.getZ() <= bLoc.getZ() + tRadius)
+                    && (tLoc.getX() >= bLoc.getX() - tRadius && tLoc.getY() >= bLoc.getY() - tRadius && tLoc.getZ() >= bLoc.getZ() - tRadius)) {
                 return false;
             }
         }
         return true;
+    }
+    private int getSRadius(){
+        return Main.getConfigManager().getItemSpawnerRadius();
+    }
+    private int getTRadius(){
+        return Main.getConfigManager().getTeamSpawnRadius();
+    }
+    private String getMessage(){
+        return Main.getConfigManager().getAntiPlaceMessage();
     }
 }

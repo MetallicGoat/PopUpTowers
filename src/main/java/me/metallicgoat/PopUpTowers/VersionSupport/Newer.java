@@ -1,4 +1,4 @@
-package me.metallicgoat.PopUpTowers.versionsupport;
+package me.metallicgoat.PopUpTowers.VersionSupport;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;

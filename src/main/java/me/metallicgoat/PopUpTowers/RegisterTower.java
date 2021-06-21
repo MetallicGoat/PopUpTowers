@@ -1,6 +1,5 @@
 package me.metallicgoat.PopUpTowers;
 
-
 import de.marcely.bedwars.api.GameAPI;
 import de.marcely.bedwars.api.event.player.PlayerBuyInShopEvent;
 import de.marcely.bedwars.api.event.player.PlayerUseSpecialItemEvent;
@@ -27,8 +26,6 @@ public class RegisterTower {
         };
 
         SpecialItem specialItem = GameAPI.get().registerSpecialItem("tower", plugin, "%towerItem%", new ItemStack(Material.CHEST));
-        //GameAPI.get().registerSpecialItem("tower", plugin, "%towerItem%", new ItemStack(Material.CHEST)).registerListener(listener);
-
 
         if(specialItem != null){
             specialItem.registerListener(listener);
